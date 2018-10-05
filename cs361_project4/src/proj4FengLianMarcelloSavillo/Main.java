@@ -32,6 +32,7 @@ import javafx.stage.WindowEvent;
  * @author Evan Savillo
  * @author Chris Marcello
  * @author Yi Feng
+ * @author Matt Jones
  */
 public class Main extends Application
 {
