@@ -1,4 +1,11 @@
-package proj4FengLianMarcelloSavillo;
+/*
+File: FiletMenuController.java
+CS361 Project 5
+Names: Yi Feng, Matt Jones, Danqing Zhao
+Date: 10/12/18
+ */
+
+package proj5JonesFengZhao;
 
 import javafx.application.Platform;
 import javafx.event.Event;

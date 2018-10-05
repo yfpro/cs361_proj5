@@ -1,11 +1,11 @@
 /*
 File: ColoredCodeArea.java
-CS361 Project 4
-Names: Yi Feng, Iris Lian, Christopher Marcello, and Evan Savillo
-Date: 10/02/18
-*/
+CS361 Project 5
+Names: Yi Feng, Matt Jones, Danqing Zhao
+Date: 10/12/18
+ */
 
-package proj4FengLianMarcelloSavillo;
+package proj5JonesFengZhao;
 
 import com.sun.tools.javac.jvm.Code;
 import org.fxmisc.richtext.CodeArea;

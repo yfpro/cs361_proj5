@@ -1,4 +1,11 @@
-package proj4FengLianMarcelloSavillo;
+/*
+File: EditMenuController.java
+CS361 Project 5
+Names: Yi Feng, Matt Jones, Danqing Zhao
+Date: 10/12/18
+ */
+
+package proj5JonesFengZhao;
 
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tab;
