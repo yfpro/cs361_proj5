@@ -1,20 +1,17 @@
 /*
 File: Main.java
-CS361 Project 4
-Names: Yi Feng, Iris Lian, Christopher Marcello, and Evan Savillo
-Date: 10/02/18
-*/
+CS361 Project 5
+Names: Yi Feng, Matt Jones, Danqing Zhao
+Date: 10/12/18
+ */
 
-package proj4FengLianMarcelloSavillo;
+package proj5JonesFengZhao;
 
 import javafx.application.Application;
-import javafx.application.Platform;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.stage.WindowEvent;
 
 
 /**
@@ -52,7 +49,7 @@ public class Main extends Application
     {
         // load the fxml file to create the stage and get the root
         FXMLLoader loader = new FXMLLoader(
-                getClass().getResource("/proj4FengLianMarcelloSavillo/Main.fxml"));
+                getClass().getResource("/proj5JonesFengZhao/Main.fxml"));
         Parent root = loader.load();
 
         // set controller and stage
@@ -69,7 +66,7 @@ public class Main extends Application
 
         // initialize a scene and add features specified in the css file to the scene
         Scene scene = new Scene(root, SCENE_WIDTH, SCENE_HEIGHT);
-        scene.getStylesheets().add("/proj4FengLianMarcelloSavillo/java-keywords.css");
+        scene.getStylesheets().add("/proj5JonesFengZhao/JavaKeywords.css");
 
         // configure the stage
         stage.setTitle(STAGE_TITLE);
