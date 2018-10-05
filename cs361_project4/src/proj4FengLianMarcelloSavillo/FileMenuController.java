@@ -82,7 +82,7 @@ public class FileMenuController
         Tab newTab = new Tab();
         newTab.setText("untitled" + (untitledCounter++) + ".txt");
 
-        newTab.setContent(new VirtualizedScrollPane<>(ColoredCodeArea.createCodeArea()));
+        newTab.setContent(new VirtualizedScrollPane<>(new ColoredCodeArea()));
 
         // set close action (clicking the 'x')
         newTab.setOnCloseRequest(event -> {
@@ -138,7 +138,7 @@ public class FileMenuController
 
             newTab.setText(openFile.getName());
             newTab.setContent(
-                    new VirtualizedScrollPane<>(ColoredCodeArea.createCodeArea()));
+                    new VirtualizedScrollPane<>(new ColoredCodeArea()));
             this.getCurrentCodeArea().replaceText(contentOpenedFile);
 
             newTab.setOnCloseRequest(event -> {

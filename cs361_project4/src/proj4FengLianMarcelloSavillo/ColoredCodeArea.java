@@ -7,6 +7,7 @@ Date: 10/02/18
 
 package proj4FengLianMarcelloSavillo;
 
+import com.sun.tools.javac.jvm.Code;
 import org.fxmisc.richtext.CodeArea;
 import org.fxmisc.richtext.LineNumberFactory;
 import org.fxmisc.richtext.model.StyleSpans;
@@ -30,7 +31,7 @@ import java.util.regex.Pattern;
  *  @author Yi Feng
  *  @author Iris Lian
  */
-public class ColoredCodeArea
+public class ColoredCodeArea extends CodeArea
 {
     /**
      * Keywords which need to be highlighted
@@ -76,14 +77,13 @@ public class ColoredCodeArea
     /**
      * Helper function which creates and sets up a code area.
      */
-    public static CodeArea createCodeArea()
+    ColoredCodeArea()
     {
-        CodeArea codeArea = new CodeArea();
 
-        codeArea.setParagraphGraphicFactory(LineNumberFactory.get(codeArea));
+        this.setParagraphGraphicFactory(LineNumberFactory.get(this));
 
         //  recompute the syntax highlighting 500 ms after user stops editing area
-        Subscription cleanupWhenNoLongerNeedIt = codeArea
+        Subscription cleanupWhenNoLongerNeedIt = this
 
                 //  plain changes = ignore style changes that are emitted when
                 //      syntax highlighting is reapplied
@@ -98,10 +98,9 @@ public class ColoredCodeArea
                 .successionEnds(Duration.ofMillis(500))
 
                 //  run the following code block when previous stream emits an event
-                .subscribe(ignore -> codeArea.setStyleSpans(0,
-                        computeHighlighting(codeArea.getText())));
+                .subscribe(ignore -> this.setStyleSpans(0,
+                        computeHighlighting(this.getText())));
 
-        return codeArea;
     }
 
     /**
