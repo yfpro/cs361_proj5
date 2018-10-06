@@ -15,8 +15,8 @@ Date: 10/12/18
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.input.KeyCodeCombination?>
 <?import javafx.scene.layout.VBox?>
-
-
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.control.Button?>
 <VBox fx:id="VBox" xmlns="http://javafx.com/javafx/8.0.121"
       xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="proj5JonesFengZhao.Controller">
@@ -114,6 +114,11 @@ Date: 10/12/18
             </MenuItem>
         </Menu>
     </MenuBar>
+    <ToolBar>
+        <Button fx:id="compileButton" onAction="#handleCompile" text="Compile"/>
+        <Button fx:id="compileRunButton" onAction="#handleCompileRun" text="Compile and Run"/>
+        <Button fx:id="stopButton" onAction="#handleStop" text="Stop"/>
+    </ToolBar>
     <TabPane fx:id="tabPane" VBox.vgrow="ALWAYS">
     </TabPane>
 </VBox>

@@ -9,6 +9,7 @@ package proj5JonesFengZhao;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TabPane;
 import javafx.stage.Stage;
@@ -20,13 +21,12 @@ import javafx.stage.Stage;
  * tasks to either of the sub controllers, FileMenuController or
  * EditMenuController.
  *
- *  @author Yi Feng
- *  @author Iris Lian
- *  @author Chris Marcello
- *  @author Evan Savillo
+ * @author Yi Feng
+ * @author Iris Lian
+ * @author Chris Marcello
+ * @author Evan Savillo
  */
-public class Controller
-{
+public class Controller {
     @FXML
     TabPane tabPane;
 
@@ -51,18 +51,25 @@ public class Controller
     MenuItem selectAllMenuItem;
 
     @FXML
+    Button compileButton;
+    @FXML
+    Button compileRunButton;
+    @FXML
+    Button stopButton;
+
+    @FXML
     Stage primaryStage;
 
     FileMenuController fileMenuController = new FileMenuController();
     EditMenuController editMenuController = new EditMenuController();
+    ToolbarController toolbarController = new ToolbarController();
 
     /**
      * Handles the About button action.
      * Creates a dialog window that displays the authors' names.
      */
     @FXML
-    private void handleAboutMenuItemAction()
-    {
+    private void handleAboutMenuItemAction() {
         fileMenuController.handleAboutMenuItemAction();
     }
 
@@ -72,8 +79,7 @@ public class Controller
      * Sets the newly opened tab to the the topmost one.
      */
     @FXML
-    private void handleNewMenuItemAction()
-    {
+    private void handleNewMenuItemAction() {
         fileMenuController.handleNewMenuItemAction();
     }
 
@@ -85,8 +91,7 @@ public class Controller
      * If the user cancels, the dialog disappears without doing anything.
      */
     @FXML
-    private void handleOpenMenuItemAction()
-    {
+    private void handleOpenMenuItemAction() {
         fileMenuController.handleOpenMenuItemAction();
     }
 
@@ -98,8 +103,7 @@ public class Controller
      * a dialog appears asking whether you want to save the text before closing it.
      */
     @FXML
-    private void handleCloseMenuItemAction(ActionEvent event)
-    {
+    private void handleCloseMenuItemAction(ActionEvent event) {
         fileMenuController.handleCloseMenuItemAction(event);
     }
 
@@ -115,8 +119,7 @@ public class Controller
      * and no saving occurs.
      */
     @FXML
-    private void handleSaveAsMenuItemAction()
-    {
+    private void handleSaveAsMenuItemAction() {
         fileMenuController.handleSaveAsMenuItemAction();
     }
 
@@ -128,8 +131,7 @@ public class Controller
      * to a file, then the text area is saved to that file.
      */
     @FXML
-    private void handleSaveMenuItemAction()
-    {
+    private void handleSaveMenuItemAction() {
         fileMenuController.handleSaveMenuItemAction();
     }
 
@@ -138,8 +140,7 @@ public class Controller
      * Exits the program when the Exit button is clicked.
      */
     @FXML
-    void handleExitMenuItemAction()
-    {
+    void handleExitMenuItemAction() {
         fileMenuController.handleExitMenuItemAction();
     }
 
@@ -149,8 +150,7 @@ public class Controller
      * click open the File menu
      */
     @FXML
-    private void handleFileMenuShowing()
-    {
+    private void handleFileMenuShowing() {
         fileMenuController.handleFileMenuShowing();
     }
 
@@ -158,8 +158,7 @@ public class Controller
      * Resets the greying out of items when File menu closes
      */
     @FXML
-    private void handleFileMenuHidden()
-    {
+    private void handleFileMenuHidden() {
         fileMenuController.handleFileMenuHidden();
     }
 
@@ -168,8 +167,7 @@ public class Controller
      * Undo the actions in the text area.
      */
     @FXML
-    private void handleUndoMenuItemAction()
-    {
+    private void handleUndoMenuItemAction() {
         editMenuController.handleUndoMenuItemAction();
     }
 
@@ -178,8 +176,7 @@ public class Controller
      * Redo the actions in the text area.
      */
     @FXML
-    private void handleRedoMenuItemAction()
-    {
+    private void handleRedoMenuItemAction() {
         editMenuController.handleRedoMenuItemAction();
     }
 
@@ -188,8 +185,7 @@ public class Controller
      * Cuts the selected text.
      */
     @FXML
-    private void handleCutMenuItemAction()
-    {
+    private void handleCutMenuItemAction() {
         editMenuController.handleCutMenuItemAction();
     }
 
@@ -198,8 +194,7 @@ public class Controller
      * Copies the selected text.
      */
     @FXML
-    private void handleCopyMenuItemAction()
-    {
+    private void handleCopyMenuItemAction() {
         editMenuController.handleCopyMenuItemAction();
     }
 
@@ -208,8 +203,7 @@ public class Controller
      * Pastes the copied/cut text.
      */
     @FXML
-    private void handlePasteMenuItemAction()
-    {
+    private void handlePasteMenuItemAction() {
         editMenuController.handlePasteMenuItemAction();
     }
 
@@ -218,9 +212,38 @@ public class Controller
      * Selects all texts in the text area.
      */
     @FXML
-    private void handleSelectAllMenuItemAction()
-    {
+    private void handleSelectAllMenuItemAction() {
         editMenuController.handleSelectAllMenuItemAction();
+    }
+
+    /**
+     * Handles the Compile button action.
+     * Will compile the code and print error codes in the terminal if necessary.
+     * Otherwise, it will print compilation success.
+     */
+    @FXML
+    private void handleCompile(){
+        toolbarController.handleCompile(compileButton);
+    }
+
+    /**
+     * Handles the Compile and Run button action.
+     * Will compile the code and print error codes in the terminal if necessary.
+     * Otherwise, it will print compilation success.
+     * If code compiles successfully, the code will be run.
+     */
+    @FXML
+    private void handleCompileRun(){
+        toolbarController.handleCompileRun(compileRunButton);
+    }
+
+    /**
+     * Handles the Stop button action.
+     * Will stop any code running through Compile and Run button.
+     */
+    @FXML
+    private void handleStop(){
+        toolbarController.handleStop(stopButton);
     }
 
     /**
@@ -228,8 +251,7 @@ public class Controller
      * click open the Edit menu
      */
     @FXML
-    private void handleEditMenuShowing()
-    {
+    private void handleEditMenuShowing() {
         editMenuController.handleEditMenuShowing();
     }
 
@@ -237,8 +259,7 @@ public class Controller
      * Resets the greying out of items when Edit menu closes
      */
     @FXML
-    private void handleEditMenuHidden()
-    {
+    private void handleEditMenuHidden() {
         editMenuController.handleEditMenuHidden();
     }
 
@@ -246,8 +267,7 @@ public class Controller
      * Reads in the application's main stage.
      * For use in Filechooser dialogs
      */
-    public void setPrimaryStage(Stage primaryStage)
-    {
+    public void setPrimaryStage(Stage primaryStage) {
         this.primaryStage = primaryStage;
     }
 
@@ -256,8 +276,7 @@ public class Controller
      * Initializes the tab file map with the default tab.
      * and passes necessary items
      */
-    public void initialize()
-    {
+    public void initialize() {
         fileMenuController.recieveFXMLElements(this.passFXMLElements());
         editMenuController.recieveFXMLElements(this.passFXMLElements());
 
@@ -270,8 +289,7 @@ public class Controller
      *
      * @return list containing necessary elements
      */
-    public Object[] passFXMLElements()
-    {
+    public Object[] passFXMLElements() {
 
         return new Object[]{
                 this.tabPane,

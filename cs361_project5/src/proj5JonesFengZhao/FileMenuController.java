@@ -31,13 +31,12 @@ import java.util.*;
  * direct link to the FXML, and relies on the Controller to act as an
  * intermediary.
  *
- *  @author Yi Feng
- *  @author Iris Lian
- *  @author Chris Marcello
- *  @author Evan Savillo
+ * @author Yi Feng
+ * @author Iris Lian
+ * @author Chris Marcello
+ * @author Evan Savillo
  */
-public class FileMenuController
-{
+public class FileMenuController {
     TabPane tabPane;
 
     MenuItem closeMenuItem;
@@ -57,8 +56,7 @@ public class FileMenuController
      * Handles the About button action.
      * Creates a dialog window that displays the authors' names.
      */
-    void handleAboutMenuItemAction()
-    {
+    void handleAboutMenuItemAction() {
         // create a information dialog window displaying the About text
         Alert dialog = new Alert(Alert.AlertType.INFORMATION);
 
@@ -84,8 +82,7 @@ public class FileMenuController
      * Opens a text area embedded in a new tab.
      * Sets the newly opened tab to the the topmost one.
      */
-    void handleNewMenuItemAction()
-    {
+    void handleNewMenuItemAction() {
         Tab newTab = new Tab();
         newTab.setText("untitled" + (untitledCounter++) + ".txt");
 
@@ -111,22 +108,17 @@ public class FileMenuController
      * is loaded into the text area.
      * If the user cancels, the dialog disappears without doing anything.
      */
-    void handleOpenMenuItemAction()
-    {
+    void handleOpenMenuItemAction() {
         // create a fileChooser
         FileChooser fileChooser = new FileChooser();
         File openFile = fileChooser.showOpenDialog(this.primaryStage);
 
-        if (openFile != null)
-        {
+        if (openFile != null) {
             // Case: file is already opened in another tab
             // Behavior: switch to that tab
-            for (Map.Entry<Tab, File> entry : this.tabFileMap.entrySet())
-            {
-                if (entry.getValue() != null)
-                {
-                    if (entry.getValue().equals(openFile))
-                    {
+            for (Map.Entry<Tab, File> entry : this.tabFileMap.entrySet()) {
+                if (entry.getValue() != null) {
+                    if (entry.getValue().equals(openFile)) {
                         this.tabPane.getSelectionModel().select(entry.getKey());
                         return;
                     }
@@ -164,10 +156,8 @@ public class FileMenuController
      * If the current text area has been changed since it was last saved to a file,
      * a dialog appears asking whether you want to save the text before closing it.
      */
-    void handleCloseMenuItemAction(Event event)
-    {
-        if (!this.isTabless())
-        {
+    void handleCloseMenuItemAction(Event event) {
+        if (!this.isTabless()) {
             this.closeTab(this.getCurrentTab());
         }
     }
@@ -185,15 +175,13 @@ public class FileMenuController
      *
      * @return false if the user has clicked cancel
      */
-    boolean handleSaveAsMenuItemAction()
-    {
+    boolean handleSaveAsMenuItemAction() {
         // create a fileChooser and add file extension restrictions
         FileChooser fileChooser = new FileChooser();
 
         // file where the text content is to be saved
         File saveFile = fileChooser.showSaveDialog(this.primaryStage);
-        if (saveFile != null)
-        {
+        if (saveFile != null) {
             // get the selected tab from the tab pane
             Tab selectedTab = this.getCurrentTab();
 
@@ -208,9 +196,7 @@ public class FileMenuController
             this.tabFileMap.put(selectedTab, saveFile);
 
             return true;
-        }
-        else
-        {
+        } else {
             return false;
         }
     }
@@ -224,8 +210,7 @@ public class FileMenuController
      *
      * @return false if the user has clicked cancel
      */
-    boolean handleSaveMenuItemAction()
-    {
+    boolean handleSaveMenuItemAction() {
         // get the selected tab from the tab pane
         Tab selectedTab = this.tabPane.getSelectionModel().getSelectedItem();
 
@@ -234,14 +219,12 @@ public class FileMenuController
 
         // if the tab content was not loaded from a file nor ever saved to a file
         // save the content of the active text area to the selected file path
-        if (this.tabFileMap.get(selectedTab) == null)
-        {
+        if (this.tabFileMap.get(selectedTab) == null) {
             return this.handleSaveAsMenuItemAction();
         }
         // if the current text area was loaded from a file or previously saved to a file,
         // then the text area is saved to that file
-        else
-        {
+        else {
             this.saveFile(activeCodeArea.getText(), this.tabFileMap.get(selectedTab));
             return true;
         }
@@ -251,14 +234,11 @@ public class FileMenuController
      * Handles the Exit button action.
      * Exits the program when the Exit button is clicked.
      */
-    void handleExitMenuItemAction()
-    {
+    void handleExitMenuItemAction() {
         ArrayList<Tab> tablist = new ArrayList<>(this.tabFileMap.keySet());
-        for (Tab tab : tablist)
-        {
+        for (Tab tab : tablist) {
             this.tabPane.getSelectionModel().select(tab);
-            if (!this.closeTab(tab))
-            {
+            if (!this.closeTab(tab)) {
                 return;
             }
         }
@@ -271,11 +251,9 @@ public class FileMenuController
      * Updates the visual status (greyed or not) of items when user
      * click open the File menu
      */
-    void handleFileMenuShowing()
-    {
+    void handleFileMenuShowing() {
         // Case 1: No tabs
-        if (isTabless())
-        {
+        if (isTabless()) {
             this.closeMenuItem.setDisable(true);
             this.saveMenuItem.setDisable(true);
             this.saveAsMenuItem.setDisable(true);
@@ -285,8 +263,7 @@ public class FileMenuController
     /**
      * Resets the greying out of items when File menu closes
      */
-    void handleFileMenuHidden()
-    {
+    void handleFileMenuHidden() {
         this.closeMenuItem.setDisable(false);
         this.saveMenuItem.setDisable(false);
         this.saveAsMenuItem.setDisable(false);
@@ -299,19 +276,14 @@ public class FileMenuController
      * @param content String that is saved to the specified file
      * @param file    File that the input string is saved to
      */
-    private void saveFile(String content, File file)
-    {
-        if (!tabPane.getTabs().isEmpty())
-        {
-            try
-            {
+    private void saveFile(String content, File file) {
+        if (!tabPane.getTabs().isEmpty()) {
+            try {
                 // open a file, save the content to it, and close it
                 FileWriter fileWriter = new FileWriter(file);
                 fileWriter.write(content);
                 fileWriter.close();
-            }
-            catch (IOException e)
-            {
+            } catch (IOException e) {
                 UserErrorDialog userErrorDialog = new UserErrorDialog(
                         UserErrorDialog.ErrorType.SAVING_ERROR, file.getName());
                 userErrorDialog.showAndWait();
@@ -325,15 +297,11 @@ public class FileMenuController
      * @param file File to get the text content from
      * @return the text content of the specified file
      */
-    private String getFileContent(File file)
-    {
+    private String getFileContent(File file) {
         String content = "";
-        try
-        {
+        try {
             content = new String(Files.readAllBytes(Paths.get(file.toURI())));
-        }
-        catch (IOException e)
-        {
+        } catch (IOException e) {
             UserErrorDialog userErrorDialog = new UserErrorDialog(
                     UserErrorDialog.ErrorType.READING_ERROR, file.getName());
             userErrorDialog.showAndWait();
@@ -351,8 +319,7 @@ public class FileMenuController
      * @param file     File to compare with the the specified TextArea
      * @return Boolean indicating if the TextArea has changed from the File
      */
-    private boolean ifFileChanged(CodeArea codeArea, File file)
-    {
+    private boolean ifFileChanged(CodeArea codeArea, File file) {
         String codeAreaContent = codeArea.getText();
         String fileContent = this.getFileContent((file));
         return !codeAreaContent.equals(fileContent);
@@ -365,8 +332,7 @@ public class FileMenuController
      *
      * @param tab Tab to be closed
      */
-    private void removeTab(Tab tab)
-    {
+    private void removeTab(Tab tab) {
         this.tabPane.getSelectionModel().selectPrevious();
         this.tabFileMap.remove(tab);
         this.tabPane.getTabs().remove(tab);
@@ -382,16 +348,13 @@ public class FileMenuController
      * @return true if the tab content has not been saved to any file yet,
      * or have been changed since last save.
      */
-    private boolean ifSaveFile(Tab tab)
-    {
+    private boolean ifSaveFile(Tab tab) {
         // check whether the embedded text has been saved or not
-        if (this.tabFileMap.get(tab) == null)
-        {
+        if (this.tabFileMap.get(tab) == null) {
             return true;
         }
         // check whether the saved file has been changed or not
-        else
-        {
+        else {
             VirtualizedScrollPane vsp = (VirtualizedScrollPane) tab.getContent();
             return this.ifFileChanged((CodeArea) vsp.getContent(),
                     this.tabFileMap.get(tab));
@@ -408,12 +371,10 @@ public class FileMenuController
      * @param tab Tab to be closed
      * @return true if the tab is closed successfully; false if the user clicks cancel.
      */
-    private boolean closeTab(Tab tab)
-    {
+    private boolean closeTab(Tab tab) {
         // if the file has not been saved or has been changed
         // pop up a dialog window asking whether to save the file
-        if (this.ifSaveFile(tab))
-        {
+        if (this.ifSaveFile(tab)) {
             Alert alert = new Alert(
                     Alert.AlertType.CONFIRMATION,
                     "Want to save before exit?",
@@ -426,31 +387,21 @@ public class FileMenuController
 
             Optional<ButtonType> result = alert.showAndWait();
             // if user presses Yes button, save the file and close the tab
-            if (result.get() == ButtonType.YES)
-            {
-                if(this.handleSaveMenuItemAction())
-                {
+            if (result.get() == ButtonType.YES) {
+                if (this.handleSaveMenuItemAction()) {
                     this.removeTab(tab);
                     return true;
-                }
-                else
+                } else
                     return false;
             }
             // if user presses No button, close the tab without saving
-            else if (result.get() == ButtonType.NO)
-            {
+            else if (result.get() == ButtonType.NO) {
                 this.removeTab(tab);
                 return true;
-            }
-            else if (result.get() == ButtonType.CANCEL)
-            {
-                return false;
-            }
-            return true;
+            } else return result.get() != ButtonType.CANCEL;
         }
         // if the file has not been changed, close the tab
-        else
-        {
+        else {
             this.removeTab(tab);
             return true;
         }
@@ -461,8 +412,7 @@ public class FileMenuController
      *
      * @return currently viewed tab
      */
-    private Tab getCurrentTab()
-    {
+    private Tab getCurrentTab() {
         return this.tabPane.getSelectionModel().getSelectedItem();
     }
 
@@ -471,8 +421,7 @@ public class FileMenuController
      *
      * @return current viewed code area
      */
-    private CodeArea getCurrentCodeArea()
-    {
+    private CodeArea getCurrentCodeArea() {
         Tab selectedTab = this.getCurrentTab();
         VirtualizedScrollPane vsp = (VirtualizedScrollPane) selectedTab.getContent();
         return (CodeArea) vsp.getContent();
@@ -483,8 +432,7 @@ public class FileMenuController
      *
      * @return true if there aren't currently any tabs open, else false
      */
-    boolean isTabless()
-    {
+    boolean isTabless() {
         return this.tabPane.getTabs().isEmpty();
     }
 
@@ -492,17 +440,15 @@ public class FileMenuController
      * Reads in the application's main stage.
      * For use in Filechooser dialogs
      */
-    public void setPrimaryStage(Stage primaryStage)
-    {
+    public void setPrimaryStage(Stage primaryStage) {
         this.primaryStage = primaryStage;
     }
 
-    /** 
+    /**
      * Simple helper method that gets the FXML objects from the
      * main controller for use by other methods in the class.
      */
-    void recieveFXMLElements(Object[] list)
-    {
+    void recieveFXMLElements(Object[] list) {
         tabPane = (TabPane) list[0];
         closeMenuItem = (MenuItem) list[1];
         saveMenuItem = (MenuItem) list[2];

@@ -31,8 +31,7 @@ import javafx.scene.Parent;
  * @author Yi Feng
  * @author Matt Jones
  */
-public class Main extends Application
-{
+public class Main extends Application {
     private static final int SCENE_WIDTH = 640;
     private static final int SCENE_HEIGHT = 480;
     private static final String STAGE_TITLE =
@@ -40,13 +39,12 @@ public class Main extends Application
 
     /**
      * Takes in a stage and loads the FXML, creates the controller,
-     * and initializes a scene. 
+     * and initializes a scene.
      *
      * @param stage The stage that contains the window content
      */
     @Override
-    public void start(Stage stage) throws Exception
-    {
+    public void start(Stage stage) throws Exception {
         // load the fxml file to create the stage and get the root
         FXMLLoader loader = new FXMLLoader(
                 getClass().getResource("/proj5JonesFengZhao/Main.fxml"));
@@ -81,8 +79,7 @@ public class Main extends Application
      *
      * @param args command line arguments
      */
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         launch(args);
     }
 }
