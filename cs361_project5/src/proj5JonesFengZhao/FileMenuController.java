@@ -35,6 +35,7 @@ import java.util.*;
  * @author Iris Lian
  * @author Chris Marcello
  * @author Evan Savillo
+ * @author Matt Jones
  */
 public class FileMenuController {
     TabPane tabPane;

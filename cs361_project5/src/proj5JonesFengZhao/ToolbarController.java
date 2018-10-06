@@ -17,7 +17,10 @@ import java.util.Optional;
  * This class is the controller for all of the toolbar functionality.
  * Specifically the Hello and Goodbye Buttons.
  *
- * @author Kevin Ahn, Jackie Hang, Matt Jones, Kevin Zhou
+ * @author Kevin Ahn
+ * @author Jackie Hang
+ * @author Matt Jones
+ * @author Kevin Zhou
  * @version 1.0
  * @since 10-3-2018
  */

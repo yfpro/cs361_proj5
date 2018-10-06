@@ -25,6 +25,7 @@ import javafx.stage.Stage;
  * @author Iris Lian
  * @author Chris Marcello
  * @author Evan Savillo
+ * @author Matt Jones
  */
 public class Controller {
     @FXML

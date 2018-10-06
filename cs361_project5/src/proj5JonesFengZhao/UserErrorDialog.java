@@ -15,6 +15,7 @@ import javafx.scene.control.ButtonType;
  * cleanly.
  *
  * @author Evan Savillo
+ * @author Matt Jones
  * @see javafx.scene.control.Alert
  */
 class UserErrorDialog extends Alert
