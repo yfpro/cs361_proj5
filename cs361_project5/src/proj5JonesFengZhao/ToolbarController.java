@@ -49,6 +49,6 @@ class ToolbarController {
      * @param stopButton Reference to the Stop Button initialized in Main.fxml
      */
     void handleStop(Button stopButton) {
-        System.out.println("Running code is being stopped.");
+        System.out.println("Running code is stopping");
     }
 }

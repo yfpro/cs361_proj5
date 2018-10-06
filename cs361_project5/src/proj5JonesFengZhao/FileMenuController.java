@@ -69,7 +69,7 @@ public class FileMenuController {
         dialog.setTitle("About");
         dialog.setHeaderText("Authors");
         dialog.setContentText(
-                "Yi Feng,\nIris Lian,\nChristopher Marcello,\nand Evan Savillo");
+                "Yi Feng,\n Matt Jones,\n Danqing Zhao");
 
         // enable to resize the About window
         dialog.setResizable(true);
