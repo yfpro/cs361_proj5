@@ -1,60 +1,29 @@
 /**
- * File: Main.css
- * Names: Matt Jones, Kevin Zhou, Kevin Ahn, Jackie Hang
- * Class: CS 361
- * Project 4
- * Date: October 3, 2018
+File: Main.css
+CS361 Project 5
+Names: Yi Feng, Matt Jones, Danqing Zhao
+Date: 10/12/18
  */
 
-#helloButton {
-    -fx-font: 13 arial;
-    -fx-base: lightgreen;
+#compileButton {
+    -fx-border-color: gray;
+    -fx-background-color: lightblue;
+    -fx-border-radius: 100;
+    -fx-background-radius: 100;
+
+}
+
+#compileRunButton {
+    -fx-border-color: gray;
+    -fx-background-color: lightgreen;
+    -fx-border-radius: 100;
     -fx-background-radius: 100;
 }
 
-#goodbyeButton {
-    -fx-font: 13 arial;
-    -fx-base: pink;
+#stopButton {
+    -fx-border-color: gray;
+    -fx-background-color: salmon;
+    -fx-border-radius: 100;
     -fx-background-radius: 100;
-}
 
-#tabPane {
-    -pref-height: 200px;
-    -pref-width: 200px;
 }
-
-.keyword {
-    -fx-fill: purple;
-    -fx-font-weight: bold;
-}
-.semicolon {
-    -fx-font-weight: bold;
-}
-.paren {
-    -fx-fill: teal;
-    -fx-font-weight: bold;
-}
-.bracket {
-    -fx-fill: teal;
-    -fx-font-weight: bold;
-}
-.brace {
-    -fx-fill: teal;
-    -fx-font-weight: bold;
-}
-.string {
-    -fx-fill: blue;
-}
-
-.comment {
-    -fx-fill: cadetblue;
-}
-
-.intconst {
-    -fx-fill: firebrick;
-}
-.paragraph-box:has-caret {
-    -fx-background-color: #f2f9fc;
-}
-
-

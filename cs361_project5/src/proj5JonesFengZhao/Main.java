@@ -64,6 +64,7 @@ public class Main extends Application {
 
         // initialize a scene and add features specified in the css file to the scene
         Scene scene = new Scene(root, SCENE_WIDTH, SCENE_HEIGHT);
+        scene.getStylesheets().add("/proj5JonesFengZhao/Main.css");
         scene.getStylesheets().add("/proj5JonesFengZhao/JavaKeywords.css");
 
         // configure the stage
