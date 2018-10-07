@@ -7,6 +7,7 @@ Date: 10/12/18
 
 package proj5JonesFengZhao;
 
+import javafx.beans.property.SimpleListProperty;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -28,6 +29,8 @@ import org.fxmisc.richtext.CodeArea;
 public class EditMenuController
 {
     TabPane tabPane;
+//    SimpleListProperty<Tab> listProperty = new SimpleListProperty<Tab>(tabPane.getTabs());
+//    undoMenuItem.disableProperty().bind(listProperty.isEmptyProperty());
 
     MenuItem undoMenuItem;
     MenuItem redoMenuItem;
@@ -35,6 +38,8 @@ public class EditMenuController
     MenuItem copyMenuItem;
     MenuItem pasteMenuItem;
     MenuItem selectAllMenuItem;
+
+
 
     /**
      * Handles the Undo button action.
@@ -90,50 +95,50 @@ public class EditMenuController
         this.getCurrentCodeArea().selectAll();
     }
 
-    /**
-     * Updates the visual status (greyed or not) of items when user
-     * click open the Edit menu
-     */
-    void handleEditMenuShowing()
-    {
-        // Case 1: No tabs
-        if (this.isTabless())
-        {
-            this.undoMenuItem.setDisable(true);
-            this.redoMenuItem.setDisable(true);
-            this.cutMenuItem.setDisable(true);
-            this.copyMenuItem.setDisable(true);
-            this.pasteMenuItem.setDisable(true);
-            this.selectAllMenuItem.setDisable(true);
-        }
-        else
-        {
-            // Case 2: No undos
-            if (!getCurrentCodeArea().isUndoAvailable())
-            {
-                this.undoMenuItem.setDisable(true);
-            }
-
-            // Case 3: No redos
-            if (!getCurrentCodeArea().isRedoAvailable())
-            {
-                this.redoMenuItem.setDisable(true);
-            }
-        }
-    }
-
-    /**
-     * Resets the greying out of items when Edit menu closes
-     */
-    void handleEditMenuHidden()
-    {
-        this.undoMenuItem.setDisable(false);
-        this.redoMenuItem.setDisable(false);
-        this.cutMenuItem.setDisable(false);
-        this.copyMenuItem.setDisable(false);
-        this.pasteMenuItem.setDisable(false);
-        this.selectAllMenuItem.setDisable(false);
-    }
+//    /**
+//     * Updates the visual status (greyed or not) of items when user
+//     * click open the Edit menu
+//     */
+//    void handleEditMenuShowing()
+//    {
+//        // Case 1: No tabs
+//        if (this.isTabless())
+//        {
+//            this.undoMenuItem.setDisable(true);
+//            this.redoMenuItem.setDisable(true);
+//            this.cutMenuItem.setDisable(true);
+//            this.copyMenuItem.setDisable(true);
+//            this.pasteMenuItem.setDisable(true);
+//            this.selectAllMenuItem.setDisable(true);
+//        }
+//        else
+//        {
+//            // Case 2: No undos
+//            if (!getCurrentCodeArea().isUndoAvailable())
+//            {
+//                this.undoMenuItem.setDisable(true);
+//            }
+//
+//            // Case 3: No redos
+//            if (!getCurrentCodeArea().isRedoAvailable())
+//            {
+//                this.redoMenuItem.setDisable(true);
+//            }
+//        }
+//    }
+//
+//    /**
+//     * Resets the greying out of items when Edit menu closes
+//     */
+//    void handleEditMenuHidden()
+//    {
+//        this.undoMenuItem.setDisable(false);
+//        this.redoMenuItem.setDisable(false);
+//        this.cutMenuItem.setDisable(false);
+//        this.copyMenuItem.setDisable(false);
+//        this.pasteMenuItem.setDisable(false);
+//        this.selectAllMenuItem.setDisable(false);
+//    }
 
     /**
      * Simple helper method which returns the currently viewed tab

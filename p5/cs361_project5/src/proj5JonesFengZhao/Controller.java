@@ -17,6 +17,8 @@ import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
 
 
+
+
 /**
  * Controller is the main controller for the application.
  * It itself doesn't handle much. What it does is delegate
@@ -38,8 +40,8 @@ public class Controller {
 
     @FXML
     Menu editMenu;
-    SimpleListProperty<Tab> listProperty = new SimpleListProperty<Tab>(tabPane.getTabs());
-    editMenu.disableProperty().bind(listProperty.isEmptyProperty());
+//    SimpleListProperty<Tab> listProperty = new SimpleListProperty<Tab>(tabPane.getTabs());
+//    editMenu.disableProperty().bind(listProperty.isEmptyProperty());
 
 
     @FXML
@@ -258,22 +260,22 @@ public class Controller {
         toolbarController.handleStop(stopButton);
     }
 
-    /**
-     * Updates the visual status (greyed or not) of items when user
-     * click open the Edit menu
-     */
-    @FXML
-    private void handleEditMenuShowing() {
-        editMenuController.handleEditMenuShowing();
-    }
+//    /**
+//     * Updates the visual status (greyed or not) of items when user
+//     * click open the Edit menu
+//     */
+//    @FXML
+//    private void handleEditMenuShowing() {
+//        editMenuController.handleEditMenuShowing();
+//    }
 
-    /**
-     * Resets the greying out of items when Edit menu closes
-     */
-    @FXML
-    private void handleEditMenuHidden() {
-        editMenuController.handleEditMenuHidden();
-    }
+//    /**
+//     * Resets the greying out of items when Edit menu closes
+//     */
+//    @FXML
+//    private void handleEditMenuHidden() {
+//        editMenuController.handleEditMenuHidden();
+//    }
 
     /**
      * Reads in the application's main stage.
@@ -293,6 +295,10 @@ public class Controller {
         editMenuController.recieveFXMLElements(this.passFXMLElements());
 
         this.handleNewMenuItemAction();
+
+
+        BooleanBinding ifTabPaneEmpty = Bindings.createBooleanBinding(() -> this.tabPane.getTabs().isEmpty(), this.tabPane.getTabs());
+        editMenu.disableProperty().bind(ifTabPaneEmpty);
     }
 
     /**

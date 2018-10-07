@@ -72,7 +72,7 @@ Date: 10/12/18
                 </accelerator>
             </MenuItem>
         </Menu>
-        <Menu fx:id="editMenu" onHidden="#handleEditMenuHidden" onShowing="#handleEditMenuShowing"
+        <Menu fx:id="editMenu"
               text="Edit">
             <MenuItem fx:id="undoMenuItem" onAction="#handleUndoMenuItemAction"
                       text="Undo">
