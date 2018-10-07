@@ -29,37 +29,37 @@ import javafx.stage.Stage;
  */
 public class Controller {
     @FXML
-    TabPane tabPane;
+    private TabPane tabPane;
 
     @FXML
-    MenuItem closeMenuItem;
+    private MenuItem closeMenuItem;
     @FXML
-    MenuItem saveMenuItem;
+    private MenuItem saveMenuItem;
     @FXML
-    MenuItem saveAsMenuItem;
+    private MenuItem saveAsMenuItem;
 
     @FXML
-    MenuItem undoMenuItem;
+    private MenuItem undoMenuItem;
     @FXML
-    MenuItem redoMenuItem;
+    private MenuItem redoMenuItem;
     @FXML
-    MenuItem cutMenuItem;
+    private MenuItem cutMenuItem;
     @FXML
-    MenuItem copyMenuItem;
+    private MenuItem copyMenuItem;
     @FXML
-    MenuItem pasteMenuItem;
+    private MenuItem pasteMenuItem;
     @FXML
-    MenuItem selectAllMenuItem;
+    private MenuItem selectAllMenuItem;
 
     @FXML
-    Button compileButton;
+    private Button compileButton;
     @FXML
-    Button compileRunButton;
+    private Button compileRunButton;
     @FXML
-    Button stopButton;
+    private Button stopButton;
 
     @FXML
-    Stage primaryStage;
+    private Stage primaryStage;
 
     FileMenuController fileMenuController = new FileMenuController();
     EditMenuController editMenuController = new EditMenuController();

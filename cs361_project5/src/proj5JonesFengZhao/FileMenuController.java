@@ -38,13 +38,13 @@ import java.util.*;
  * @author Matt Jones
  */
 public class FileMenuController {
-    TabPane tabPane;
+    private TabPane tabPane;
 
-    MenuItem closeMenuItem;
-    MenuItem saveMenuItem;
-    MenuItem saveAsMenuItem;
+    private MenuItem closeMenuItem;
+    private MenuItem saveMenuItem;
+    private MenuItem saveAsMenuItem;
 
-    Stage primaryStage;
+    private Stage primaryStage;
 
     /**
      * a HashMap mapping the tabs and associated files
