@@ -84,21 +84,10 @@ public class FileMenuController {
      * Sets the newly opened tab to the the topmost one.
      */
     void handleNewMenuItemAction() {
-        Tab newTab = new Tab();
+        Tab newTab = createNewTab();
         newTab.setText("untitled" + (untitledCounter++) + ".txt");
-
         newTab.setContent(new VirtualizedScrollPane<>(new ColoredCodeArea()));
 
-        // set close action (clicking the 'x')
-        newTab.setOnCloseRequest(event -> {
-            event.consume();
-            closeTab(newTab);
-        });
-
-        // add the new tab to the tab pane
-        // set the newly opened tab to the the current (topmost) one
-        this.tabPane.getTabs().add(newTab);
-        this.tabPane.getSelectionModel().select(newTab);
         this.tabFileMap.put(newTab, null);
     }
 
@@ -131,20 +120,12 @@ public class FileMenuController {
             // Case: current text area is in use and shouldn't be overwritten
             // Behavior: generate new tab and open the file there
 
-            Tab newTab = new Tab();
-            this.tabPane.getTabs().add(newTab);
-            //current tab is now new tab, so getCurrentCodeArea() can be used below
-            this.tabPane.getSelectionModel().select(newTab);
+            Tab newTab = createNewTab();
 
             newTab.setText(openFile.getName());
             newTab.setContent(
                     new VirtualizedScrollPane<>(new ColoredCodeArea()));
             this.getCurrentCodeArea().replaceText(contentOpenedFile);
-
-            newTab.setOnCloseRequest(event -> {
-                event.consume();
-                closeTab(newTab);
-            });
 
             this.tabFileMap.put(newTab, openFile);
         }
@@ -291,7 +272,7 @@ public class FileMenuController {
                 FileWriter fileWriter = new FileWriter(file);
                 fileWriter.write(content);
                 fileWriter.close();
-                return false;
+                return true;
             } catch (IOException e) {
                 UserErrorDialog userErrorDialog = new UserErrorDialog(
                         UserErrorDialog.ErrorType.SAVING_ERROR, file.getName());
@@ -454,6 +435,31 @@ public class FileMenuController {
     public void setPrimaryStage(Stage primaryStage) {
         this.primaryStage = primaryStage;
     }
+
+    /**
+     * create a new Tab
+     * for use in handleNew and handleOpen
+     * @return Tab return the created tab
+     */
+    public Tab createNewTab(){
+
+        Tab newTab = new Tab();
+        // set close action (clicking the 'x')
+        newTab.setOnCloseRequest(event -> {
+            event.consume();
+            closeTab(newTab);
+        });
+
+        // add the new tab to the tab pane
+        // set the newly opened tab to the the current (topmost) one
+        this.tabPane.getTabs().add(newTab);
+        this.tabPane.getSelectionModel().select(newTab);
+
+        return newTab;
+    }
+
+
+
 
     /**
      * Simple helper method that gets the FXML objects from the
