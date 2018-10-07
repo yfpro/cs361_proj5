@@ -34,7 +34,8 @@ public class EditMenuController
     private MenuItem cutMenuItem;
     private MenuItem copyMenuItem;
     private MenuItem pasteMenuItem;
-    private MenuItem selectAllMenuItem;
+    private
+    MenuItem selectAllMenuItem;
 
     /**
      * Handles the Undo button action.

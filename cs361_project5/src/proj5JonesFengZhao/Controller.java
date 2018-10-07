@@ -286,17 +286,17 @@ public class Controller {
         this.handleNewMenuItemAction();
 
         SimpleListProperty<Tab> listProperty = new SimpleListProperty<>(tabPane.getTabs());
-        disableMenu(listProperty);
-        disableEdit(listProperty);
+        disableFileMenu(listProperty);
+        disableEditMenu(listProperty);
     }
 
-    private void disableMenu(SimpleListProperty listProperty) {
+    private void disableFileMenu(SimpleListProperty listProperty) {
         saveAsMenuItem.disableProperty().bind(listProperty.emptyProperty());
         saveMenuItem.disableProperty().bind(listProperty.emptyProperty());
         closeMenuItem.disableProperty().bind(listProperty.emptyProperty());
     }
 
-    private void disableEdit(SimpleListProperty listProperty) {
+    private void disableEditMenu(SimpleListProperty listProperty) {
         undoMenuItem.disableProperty().bind(listProperty.emptyProperty());
 //        undoMenuItem.disableProperty().bind(editMenuController.getCurrentCodeArea().undoAvailableProperty());
         redoMenuItem.disableProperty().bind(listProperty.emptyProperty());
