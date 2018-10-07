@@ -150,7 +150,7 @@ public class EditMenuController
      *
      * @return current viewed code area
      */
-    private CodeArea getCurrentCodeArea()
+    CodeArea getCurrentCodeArea()
     {
         Tab selectedTab = this.getCurrentTab();
         VirtualizedScrollPane vsp = (VirtualizedScrollPane) selectedTab.getContent();
