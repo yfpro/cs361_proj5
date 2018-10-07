@@ -181,22 +181,28 @@ public class FileMenuController {
         FileChooser fileChooser = new FileChooser();
 
         // file where the text content is to be saved
-        File saveFile = fileChooser.showSaveDialog(this.primaryStage);
-        if (saveFile != null) {
+        File saveFileDialog = fileChooser.showSaveDialog(this.primaryStage);
+        if (saveFileDialog != null) {
             // get the selected tab from the tab pane
             Tab selectedTab = this.getCurrentTab();
 
             // get the text area embedded in the selected tab window
             // save the content of the active text area to the selected file
             CodeArea activeCodeArea = this.getCurrentCodeArea();
-            this.saveFile(activeCodeArea.getText(), saveFile);
-            // set the title of the tab to the name of the saved file
-            selectedTab.setText(saveFile.getName());
+            if(this.saveFileTo(activeCodeArea.getText(), saveFileDialog)) {
 
-            // map the tab and the associated file
-            this.tabFileMap.put(selectedTab, saveFile);
+                // set the title of the tab to the name of the saved file
+                selectedTab.setText(saveFileDialog.getName());
 
-            return true;
+                // map the tab and the associated file
+                this.tabFileMap.put(selectedTab, saveFileDialog);
+
+                return true;
+            }
+            else{
+                return false;
+            }
+
         } else {
             return false;
         }
@@ -226,8 +232,8 @@ public class FileMenuController {
         // if the current text area was loaded from a file or previously saved to a file,
         // then the text area is saved to that file
         else {
-            this.saveFile(activeCodeArea.getText(), this.tabFileMap.get(selectedTab));
-            return true;
+            if(this.saveFileTo(activeCodeArea.getText(), this.tabFileMap.get(selectedTab))) return true;
+            else return false;
         }
     }
 
@@ -276,20 +282,24 @@ public class FileMenuController {
      *
      * @param content String that is saved to the specified file
      * @param file    File that the input string is saved to
+     * @return boolean If the file is successfully saved, return true; else, return false.
      */
-    private void saveFile(String content, File file) {
+    private boolean saveFileTo(String content, File file) {
         if (!tabPane.getTabs().isEmpty()) {
             try {
                 // open a file, save the content to it, and close it
                 FileWriter fileWriter = new FileWriter(file);
                 fileWriter.write(content);
                 fileWriter.close();
+                return false;
             } catch (IOException e) {
                 UserErrorDialog userErrorDialog = new UserErrorDialog(
                         UserErrorDialog.ErrorType.SAVING_ERROR, file.getName());
                 userErrorDialog.showAndWait();
+                return false;
             }
         }
+        return false;
     }
 
     /**
