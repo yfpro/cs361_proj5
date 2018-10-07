@@ -10,6 +10,7 @@ package proj5JonesFengZhao;
 import javafx.application.Platform;
 import javafx.event.Event;
 import javafx.scene.control.*;
+import javafx.scene.Node;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.Window;
@@ -84,9 +85,11 @@ public class FileMenuController {
      * Sets the newly opened tab to the the topmost one.
      */
     void handleNewMenuItemAction() {
-        Tab newTab = createNewTab();
-        newTab.setText("untitled" + (untitledCounter++) + ".txt");
-        newTab.setContent(new VirtualizedScrollPane<>(new ColoredCodeArea()));
+
+
+        Tab newTab = createNewTab("untitled" + (untitledCounter++) + ".txt", new VirtualizedScrollPane<>(new ColoredCodeArea()));
+//        newTab.setText("untitled" + (untitledCounter++) + ".txt");
+//        newTab.setContent(new VirtualizedScrollPane<>(new ColoredCodeArea()));
 
         this.tabFileMap.put(newTab, null);
     }
@@ -120,11 +123,11 @@ public class FileMenuController {
             // Case: current text area is in use and shouldn't be overwritten
             // Behavior: generate new tab and open the file there
 
-            Tab newTab = createNewTab();
+            Tab newTab = createNewTab(openFile.getName(),new VirtualizedScrollPane<>(new ColoredCodeArea()));
 
-            newTab.setText(openFile.getName());
-            newTab.setContent(
-                    new VirtualizedScrollPane<>(new ColoredCodeArea()));
+//            newTab.setText(openFile.getName());
+//            newTab.setContent(
+//                    new VirtualizedScrollPane<>(new ColoredCodeArea()));
             this.getCurrentCodeArea().replaceText(contentOpenedFile);
 
             this.tabFileMap.put(newTab, openFile);
@@ -438,10 +441,13 @@ public class FileMenuController {
 
     /**
      * create a new Tab
-     * for use in handleNew and handleOpen
+     * for use in handleNewMenuItemAction and handleOpenMenuItemAction
+     *
+     * @param tabText the tab text
+     * @param content the content of the tab
      * @return Tab return the created tab
      */
-    public Tab createNewTab(){
+    public Tab createNewTab(String tabText, Node content){
 
         Tab newTab = new Tab();
         // set close action (clicking the 'x')
@@ -450,10 +456,14 @@ public class FileMenuController {
             closeTab(newTab);
         });
 
+        newTab.setText(tabText);
+        newTab.setContent(content);
+
         // add the new tab to the tab pane
         // set the newly opened tab to the the current (topmost) one
         this.tabPane.getTabs().add(newTab);
         this.tabPane.getSelectionModel().select(newTab);
+
 
         return newTab;
     }
