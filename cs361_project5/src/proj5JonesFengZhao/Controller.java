@@ -7,10 +7,12 @@ Date: 10/12/18
 
 package proj5JonesFengZhao;
 
+import javafx.beans.property.SimpleListProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.stage.Stage;
 
@@ -150,18 +152,18 @@ public class Controller {
      * Updates the visual status (greyed or not) of items when user
      * click open the File menu
      */
-    @FXML
-    private void handleFileMenuShowing() {
-        fileMenuController.handleFileMenuShowing();
-    }
-
-    /**
-     * Resets the greying out of items when File menu closes
-     */
-    @FXML
-    private void handleFileMenuHidden() {
-        fileMenuController.handleFileMenuHidden();
-    }
+//    @FXML
+//    private void handleFileMenuShowing() {
+//        fileMenuController.handleFileMenuShowing();
+//    }
+//
+//    /**
+//     * Resets the greying out of items when File menu closes
+//     */
+//    @FXML
+//    private void handleFileMenuHidden() {
+//        fileMenuController.handleFileMenuHidden();
+//    }
 
     /**
      * Handles the Undo button action.
@@ -251,18 +253,18 @@ public class Controller {
      * Updates the visual status (greyed or not) of items when user
      * click open the Edit menu
      */
-    @FXML
-    private void handleEditMenuShowing() {
-        editMenuController.handleEditMenuShowing();
-    }
+//    @FXML
+//    private void handleEditMenuShowing() {
+//        editMenuController.handleEditMenuShowing();
+//    }
 
     /**
      * Resets the greying out of items when Edit menu closes
      */
-    @FXML
-    private void handleEditMenuHidden() {
-        editMenuController.handleEditMenuHidden();
-    }
+//    @FXML
+//    private void handleEditMenuHidden() {
+//        editMenuController.handleEditMenuHidden();
+//    }
 
     /**
      * Reads in the application's main stage.
@@ -282,6 +284,27 @@ public class Controller {
         editMenuController.recieveFXMLElements(this.passFXMLElements());
 
         this.handleNewMenuItemAction();
+
+        SimpleListProperty<Tab> listProperty = new SimpleListProperty<>(tabPane.getTabs());
+        disableMenu(listProperty);
+        disableEdit(listProperty);
+    }
+
+    private void disableMenu(SimpleListProperty listProperty) {
+        saveAsMenuItem.disableProperty().bind(listProperty.emptyProperty());
+        saveMenuItem.disableProperty().bind(listProperty.emptyProperty());
+        closeMenuItem.disableProperty().bind(listProperty.emptyProperty());
+    }
+
+    private void disableEdit(SimpleListProperty listProperty) {
+        undoMenuItem.disableProperty().bind(listProperty.emptyProperty());
+//        undoMenuItem.disableProperty().bind(editMenuController.getCurrentCodeArea().undoAvailableProperty());
+        redoMenuItem.disableProperty().bind(listProperty.emptyProperty());
+//        redoMenuItem.disableProperty().bind(editMenuController.getCurrentCodeArea().undoAvailableProperty());
+        copyMenuItem.disableProperty().bind(listProperty.emptyProperty());
+        cutMenuItem.disableProperty().bind(listProperty.emptyProperty());
+        pasteMenuItem.disableProperty().bind(listProperty.emptyProperty());
+        selectAllMenuItem.disableProperty().bind(listProperty.emptyProperty());
     }
 
     /**

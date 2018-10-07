@@ -252,23 +252,23 @@ public class FileMenuController {
      * Updates the visual status (greyed or not) of items when user
      * click open the File menu
      */
-    void handleFileMenuShowing() {
-        // Case 1: No tabs
-        if (isTabless()) {
-            this.closeMenuItem.setDisable(true);
-            this.saveMenuItem.setDisable(true);
-            this.saveAsMenuItem.setDisable(true);
-        }
-    }
-
-    /**
-     * Resets the greying out of items when File menu closes
-     */
-    void handleFileMenuHidden() {
-        this.closeMenuItem.setDisable(false);
-        this.saveMenuItem.setDisable(false);
-        this.saveAsMenuItem.setDisable(false);
-    }
+//    void handleFileMenuShowing() {
+//        // Case 1: No tabs
+//        if (isTabless()) {
+//            this.closeMenuItem.setDisable(true);
+//            this.saveMenuItem.setDisable(true);
+//            this.saveAsMenuItem.setDisable(true);
+//        }
+//    }
+//
+//    /**
+//     * Resets the greying out of items when File menu closes
+//     */
+//    void handleFileMenuHidden() {
+//        this.closeMenuItem.setDisable(false);
+//        this.saveMenuItem.setDisable(false);
+//        this.saveAsMenuItem.setDisable(false);
+//    }
 
 
     /**

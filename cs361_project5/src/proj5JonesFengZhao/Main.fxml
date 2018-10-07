@@ -24,8 +24,7 @@ Date: 10/12/18
 <VBox fx:id="VBox" xmlns="http://javafx.com/javafx/8.0.121"
       xmlns:fx="http://javafx.com/fxml/1" fx:controller="proj5JonesFengZhao.Controller">
     <MenuBar VBox.vgrow="NEVER">
-        <Menu onHidden="#handleFileMenuHidden" onShowing="#handleFileMenuShowing"
-              text="File">
+        <Menu text="File">
             <MenuItem fx:id="aboutMenuItem" onAction="#handleAboutMenuItemAction"
                       text="About..."/>
             <SeparatorMenuItem/>
@@ -72,8 +71,7 @@ Date: 10/12/18
                 </accelerator>
             </MenuItem>
         </Menu>
-        <Menu onHidden="#handleEditMenuHidden" onShowing="#handleEditMenuShowing"
-              text="Edit">
+        <Menu text="Edit">
             <MenuItem fx:id="undoMenuItem" onAction="#handleUndoMenuItemAction"
                       text="Undo">
                 <accelerator>
