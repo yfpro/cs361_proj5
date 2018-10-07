@@ -15,6 +15,10 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.stage.Stage;
+import org.fxmisc.richtext.CodeArea;
+
+import java.io.File;
+import java.io.IOException;
 
 
 /**
@@ -225,8 +229,11 @@ public class Controller {
      * Otherwise, it will print compilation success.
      */
     @FXML
-    private void handleCompile(){
-        toolbarController.handleCompile(compileButton);
+    private void handleCompile() throws IOException {
+        Tab curTab = tabPane.getSelectionModel().getSelectedItem();
+        File curFile = fileMenuController.getMap().get(curTab);
+//        System.out.println(curFile);
+        toolbarController.handleCompile(curFile);
     }
 
     /**
