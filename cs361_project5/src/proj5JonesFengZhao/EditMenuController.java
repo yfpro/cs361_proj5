@@ -94,46 +94,46 @@ public class EditMenuController
      * Updates the visual status (greyed or not) of items when user
      * click open the Edit menu
      */
-    void handleEditMenuShowing()
-    {
-        // Case 1: No tabs
-        if (this.isTabless())
-        {
-            this.undoMenuItem.setDisable(true);
-            this.redoMenuItem.setDisable(true);
-            this.cutMenuItem.setDisable(true);
-            this.copyMenuItem.setDisable(true);
-            this.pasteMenuItem.setDisable(true);
-            this.selectAllMenuItem.setDisable(true);
-        }
-        else
-        {
-            // Case 2: No undos
-            if (!getCurrentCodeArea().isUndoAvailable())
-            {
-                this.undoMenuItem.setDisable(true);
-            }
-
-            // Case 3: No redos
-            if (!getCurrentCodeArea().isRedoAvailable())
-            {
-                this.redoMenuItem.setDisable(true);
-            }
-        }
-    }
+//    void handleEditMenuShowing()
+//    {
+//        // Case 1: No tabs
+//        if (this.isTabless())
+//        {
+//            this.undoMenuItem.setDisable(true);
+//            this.redoMenuItem.setDisable(true);
+//            this.cutMenuItem.setDisable(true);
+//            this.copyMenuItem.setDisable(true);
+//            this.pasteMenuItem.setDisable(true);
+//            this.selectAllMenuItem.setDisable(true);
+//        }
+//        else
+//        {
+//        // Case 2: No undos
+//        if (!getCurrentCodeArea().isUndoAvailable())
+//        {
+//            this.undoMenuItem.setDisable(true);
+//        }
+//
+//        // Case 3: No redos
+//        if (!getCurrentCodeArea().isRedoAvailable())
+//        {
+//            this.redoMenuItem.setDisable(true);
+//        }
+//    }
 
     /**
      * Resets the greying out of items when Edit menu closes
      */
-    void handleEditMenuHidden()
-    {
-        this.undoMenuItem.setDisable(false);
-        this.redoMenuItem.setDisable(false);
-        this.cutMenuItem.setDisable(false);
-        this.copyMenuItem.setDisable(false);
-        this.pasteMenuItem.setDisable(false);
-        this.selectAllMenuItem.setDisable(false);
-    }
+//    void handleEditMenuHidden()
+//    {
+//        return;
+//        this.undoMenuItem.setDisable(false);
+//        this.redoMenuItem.setDisable(false);
+//        this.cutMenuItem.setDisable(false);
+//        this.copyMenuItem.setDisable(false);
+//        this.pasteMenuItem.setDisable(false);
+//        this.selectAllMenuItem.setDisable(false);
+//    }
 
     /**
      * Simple helper method which returns the currently viewed tab
