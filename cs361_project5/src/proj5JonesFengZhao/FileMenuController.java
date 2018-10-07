@@ -349,7 +349,7 @@ public class FileMenuController {
      * @return true if the tab content has not been saved to any file yet,
      * or have been changed since last save.
      */
-    private boolean ifSaveFile(Tab tab) {
+    private boolean tabHasUnsavedChanges(Tab tab) {
         // check whether the embedded text has been saved or not
         if (this.tabFileMap.get(tab) == null) {
             return true;
@@ -375,7 +375,7 @@ public class FileMenuController {
     private boolean closeTab(Tab tab) {
         // if the file has not been saved or has been changed
         // pop up a dialog window asking whether to save the file
-        if (this.ifSaveFile(tab)) {
+        if (this.tabHasUnsavedChanges(tab)) {
             Alert alert = new Alert(
                     Alert.AlertType.CONFIRMATION,
                     "Want to save before exit?",
