@@ -230,10 +230,16 @@ public class Controller {
      */
     @FXML
     private void handleCompile() throws IOException {
-        Tab curTab = tabPane.getSelectionModel().getSelectedItem();
-        File curFile = fileMenuController.getMap().get(curTab);
-//        System.out.println(curFile);
-        toolbarController.handleCompile(curFile);
+//        Tab curTab = tabPane.getSelectionModel().getSelectedItem();
+        File curFile = getCurrentFile();
+        System.out.println(curFile);
+        if (curFile != null) toolbarController.handleCompile(curFile);
+    }
+
+
+    private File getCurrentFile(){
+        File curFile = fileMenuController.getCurrentFile();
+        return curFile;
     }
 
     /**

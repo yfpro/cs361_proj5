@@ -35,10 +35,14 @@ class ToolbarController {
      * @param curFile Reference to the currently selected file.
      */
     void handleCompile(File curFile) throws IOException {
-        String path = curFile.getAbsoluteFile().getParent();
+//        String path = curFile.getAbsoluteFile().getParent();
+        String path = curFile.getAbsolutePath();
+        System.out.println(path);
 
-        String command[] = {"javac ", path, "*.java"};
-        ProcessBuilder pb = new ProcessBuilder(command);
+//        String command[] = {"javac ", path, "*.java"};
+        ProcessBuilder pb = new ProcessBuilder("javac", path);
+
+//        System.out.println(command);
 
         Process process = pb.start();
 
@@ -51,18 +55,18 @@ class ToolbarController {
         //  0 - successful
 
         // I AM NOT SURE WHY BUT THIS BLOCH GIVES AN ERROR
-        if (process.exitValue() == 0) {
-            process = new ProcessBuilder(new String[]{"java", "-cp", "d:\\", "Test"}).start();
-            //Check if RuntimeException or Errors encounter during execution then print
-            // errors on console
-            // Otherwise print Output
-
-            if (process.getErrorStream().read() != -1) {
-                System.out.println("Errors " + process.getErrorStream());
-            } else {
-                System.out.println("Output " + process.getInputStream());
-            }
-        }
+//        if (process.exitValue() == 0) {
+//            process = new ProcessBuilder(new String[]{"java", "-cp", "d:\\", "Test"}).start();
+//            //Check if RuntimeException or Errors encounter during execution then print
+//            // errors on console
+//            // Otherwise print Output
+//
+//            if (process.getErrorStream().read() != -1) {
+//                System.out.println("Errors " + process.getErrorStream());
+//            } else {
+//                System.out.println("Output " + process.getInputStream());
+//            }
+//        }
 //        System.out.println("javac " + path + "*.java");
 //        pb.command("javac ", path, "*.java");
     }

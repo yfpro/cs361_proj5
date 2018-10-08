@@ -483,7 +483,14 @@ public class FileMenuController {
         primaryStage = (Stage) list[10];
     }
 
-    Map<Tab, File> getMap() {
-        return tabFileMap;
+    File getCurrentFile() {
+
+        // get the selected tab from the tab pane
+        if(handleSaveMenuItemAction()) {
+            return this.tabFileMap.get(this.tabPane.getSelectionModel().getSelectedItem());
+        }
+        else{
+            return null;
+        }
     }
 }
