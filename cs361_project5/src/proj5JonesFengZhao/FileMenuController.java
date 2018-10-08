@@ -482,4 +482,8 @@ public class FileMenuController {
         saveAsMenuItem = (MenuItem) list[3];
         primaryStage = (Stage) list[10];
     }
+
+    Map<Tab, File> getMap() {
+        return tabFileMap;
+    }
 }
